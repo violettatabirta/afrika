@@ -2,28 +2,89 @@ package org.wahlzeit.location;
 
 import com.mapcode.Mapcode;
 import com.mapcode.MapcodeCodec;
-import com.mapcode.Point;
 import com.mapcode.UnknownMapcodeException;
-import com.mapcode.UnknownTerritoryException;
 
-public class MapCodeLocation extends Location {
+/**
+ * @author Violetta Tabirta
+ *
+ */
+public class MapCodeLocation extends LocationAbstract {
 
-	// constructor
+	private String mapcode = "";
+
+	/**
+	 * 
+	 */
 	public MapCodeLocation() {
 	}
 
-	// decode a latitude / longitude point into a MapCode
-	//
-	public final String GPSDecode(double lat, double lon) {
+	/**
+	 * @param mapcode
+	 */
+	public void MapCode(String mapcode) {
+		doSetMapCode(mapcode);
+	}
 
-		Mapcode mc = MapcodeCodec.encode(lat, lon).get(0); 
-		
-		return mc.getTerritory().toString()  +" " +mc.getMapcode().toString();
+	/**
+	 * @param latitude
+	 * @param longitude
+	 */
+	public void MapCode(double latitude, double longitude) {
+		doSetLocation(latitude, longitude);
 	}
 
 	@Override
-	Point mapcodeDecode(String decode) {
-		// TODO Auto-generated method stub
-		return null;
+	protected void doSetLocation(double latitude, double longitude) {
+		Mapcode mapCodeElement = MapcodeCodec.encode(latitude, longitude)
+				.get(0);
+		doSetMapCode(mapCodeElement.getTerritory().toString() + " "
+				+ mapCodeElement.getMapcode().toString());
+	}
+
+	@Override
+	protected void doSetLocation(String mapcode) {
+		doSetMapCode(mapcode);
+
+	}
+
+	@Override
+	protected double doGetLatitude() {
+		try {
+			return MapcodeCodec.decode(doGetMapCode()).getLatDeg();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (UnknownMapcodeException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	@Override
+	protected double doGetLongitude() {
+		try {
+			return MapcodeCodec.decode(doGetMapCode()).getLonDeg();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (UnknownMapcodeException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+
+	@Override
+	protected String doGetMapCode() {
+		return mapcode;
+	}
+
+	@Override
+	protected String doGetAsString() {
+		return doGetMapCode();
+	}
+
+	/**
+	 * @param mapcode
+	 */
+	private void doSetMapCode(String mapcode) {
+		this.mapcode = mapcode;
 	}
 }

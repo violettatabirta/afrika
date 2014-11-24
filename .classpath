@@ -19,11 +19,17 @@
 	<classpathentry kind="lib" path="web/WEB-INF/lib/postgresql-9.3-1101.jdbc41.jar"/>
 	<classpathentry exported="true" kind="lib" path="web/WEB-INF/lib/log4j-1.2.17.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/3"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Vio/Downloads/ADAP/javax.servlet-api-3.1.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Vio/Downloads/ADAP/mapcode-1.40.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Vio/Downloads/ADAP/slf4j-api-1.7.7.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Vio/Downloads/ADAP/slf4j-ext-1.7.7.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Vio/Downloads/ADAP/slf4j-log4j12-1.7.7.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/Vio/Downloads/ADAP/slf4j-migrator-1.7.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/ADAP/commons-io-2.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/ADAP/commons-io-2.4-javadoc.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/ADAP/commons-io-2.4-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/ADAP/javax.servlet-api-3.1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/ADAP/sanselan-0.97-incubator.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/ADAP/sanselan-0.97-incubator-javadoc.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/ADAP/sanselan-0.97-incubator-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/ADAP/slf4j-api-1.7.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/ADAP/slf4j-ext-1.7.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/ADAP/slf4j-log4j12-1.7.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/ADAP/slf4j-migrator-1.7.7.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/ADAP/mapcode-1.40.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

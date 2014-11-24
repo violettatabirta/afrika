@@ -30,7 +30,11 @@ CREATE TABLE photos (
 	praise_sum integer,
 	no_votes integer,
 	creation_time bigint,
-	location text
+	location text,
+	clime text, 
+	vegetation text, 
+	residents text, 
+	water text
 );
 
 CREATE TABLE tags (

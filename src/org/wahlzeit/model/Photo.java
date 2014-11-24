@@ -21,16 +21,14 @@
 package org.wahlzeit.model;
 
 import java.sql.*;
-import java.io.PrintStream;
 import java.net.*;
 
-import org.apache.log4j.Logger;
+import org.wahlzeit.location.GPSLocation;
 import org.wahlzeit.location.Location;
-import org.wahlzeit.location.LocationTransformation;
+import org.wahlzeit.location.MapCodeLocation;
 import org.wahlzeit.services.*;
 import org.wahlzeit.utils.*;
 
-import java.util.*;
 
 /**
  * A photo represents a user-provided (uploaded) photo.
@@ -57,7 +55,7 @@ public class Photo extends DataObject {
 	public static final String STATUS = "status";
 	public static final String IS_INVISIBLE = "isInvisible";
 	public static final String UPLOADED_ON = "uploadedOn";
-	
+
 	/**
 	 * 
 	 */
@@ -65,12 +63,12 @@ public class Photo extends DataObject {
 	public static final int MAX_PHOTO_HEIGHT = 600;
 	public static final int MAX_THUMB_PHOTO_WIDTH = 105;
 	public static final int MAX_THUMB_PHOTO_HEIGHT = 150;
-	
+
 	/**
 	 * 
 	 */
 	protected PhotoId id = null;
-	
+
 	/**
 	 * 
 	 */
@@ -84,42 +82,41 @@ public class Photo extends DataObject {
 	protected EmailAddress ownerEmailAddress = EmailAddress.EMPTY;
 	protected Language ownerLanguage = Language.ENGLISH;
 	protected URL ownerHomePage;
-	
+
 	/**
 	 * 
 	 */
 	protected int width;
 	protected int height;
 	protected PhotoSize maxPhotoSize = PhotoSize.MEDIUM; // derived
-	
+
 	/**
 	 * 
 	 */
 	protected Tags tags = Tags.EMPTY_TAGS;
-	
-	
-	/**
-	 * 
-	 */
-
-	protected String location = new Scanner(System.in).nextLine();
 
 	/**
 	 * 
 	 */
 	protected PhotoStatus status = PhotoStatus.VISIBLE;
-	
+
 	/**
 	 * 
 	 */
 	protected int praiseSum = 10;
 	protected int noVotes = 1;
-	
+
+	/**
+	 * 
+	 */
+	protected Location location;
+	protected String locationVal = "-26.432632, 34.522164";
+
 	/**
 	 * 
 	 */
 	protected long creationTime = System.currentTimeMillis();
-	
+
 	/**
 	 * 
 	 */
@@ -127,17 +124,17 @@ public class Photo extends DataObject {
 		id = PhotoId.getNextId();
 		incWriteCount();
 	}
-	
+
 	/**
 	 * 
 	 * @methodtype constructor
 	 */
 	public Photo(PhotoId myId) {
 		id = myId;
-		
+
 		incWriteCount();
 	}
-	
+
 	/**
 	 * 
 	 * @methodtype constructor
@@ -153,7 +150,7 @@ public class Photo extends DataObject {
 	public String getIdAsString() {
 		return String.valueOf(id.asInt());
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -162,9 +159,10 @@ public class Photo extends DataObject {
 
 		ownerId = rset.getInt("owner_id");
 		ownerName = rset.getString("owner_name");
-		
+
 		ownerNotifyAboutPraise = rset.getBoolean("owner_notify_about_praise");
-		ownerEmailAddress = EmailAddress.getFromString(rset.getString("owner_email_address"));
+		ownerEmailAddress = EmailAddress.getFromString(rset
+				.getString("owner_email_address"));
 		ownerLanguage = Language.getFromInt(rset.getInt("owner_language"));
 		ownerHomePage = StringUtil.asUrl(rset.getString("owner_home_page"));
 
@@ -174,7 +172,7 @@ public class Photo extends DataObject {
 		tags = new Tags(rset.getString("tags"));
 
 		status = PhotoStatus.getFromInt(rset.getInt("status"));
-		location = rset.getString("location"); //get location data
+		locationVal = rset.getString("location"); 
 		praiseSum = rset.getInt("praise_sum");
 		noVotes = rset.getInt("no_votes");
 
@@ -182,7 +180,7 @@ public class Photo extends DataObject {
 
 		maxPhotoSize = PhotoSize.getFromWidthHeight(width, height);
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -200,8 +198,8 @@ public class Photo extends DataObject {
 		rset.updateInt("status", status.asInt());
 		rset.updateInt("praise_sum", praiseSum);
 		rset.updateInt("no_votes", noVotes);
-		rset.updateLong("creation_time", creationTime);		
-		rset.updateString("location", getLocation()); //update location data
+		rset.updateLong("creation_time", creationTime);
+		rset.updateString("location", getLocation()); 
 	}
 
 	/**
@@ -210,7 +208,7 @@ public class Photo extends DataObject {
 	public void writeId(PreparedStatement stmt, int pos) throws SQLException {
 		stmt.setInt(pos, id.asInt());
 	}
-	
+
 	/**
 	 * 
 	 * @methodtype get
@@ -218,7 +216,7 @@ public class Photo extends DataObject {
 	public PhotoId getId() {
 		return id;
 	}
-	
+
 	/**
 	 * 
 	 * @methodtype get
@@ -226,7 +224,7 @@ public class Photo extends DataObject {
 	public int getOwnerId() {
 		return ownerId;
 	}
-	
+
 	/**
 	 * 
 	 * @methodtype set
@@ -235,7 +233,7 @@ public class Photo extends DataObject {
 		ownerId = newId;
 		incWriteCount();
 	}
-	
+
 	/**
 	 * 
 	 * @methodtype get
@@ -243,7 +241,7 @@ public class Photo extends DataObject {
 	public String getOwnerName() {
 		return ownerName;
 	}
-	
+
 	/**
 	 * 
 	 * @methodtype set
@@ -252,7 +250,7 @@ public class Photo extends DataObject {
 		ownerName = newName;
 		incWriteCount();
 	}
-	
+
 	/**
 	 * 
 	 * @methodtype get
@@ -276,7 +274,7 @@ public class Photo extends DataObject {
 	public boolean getOwnerNotifyAboutPraise() {
 		return ownerNotifyAboutPraise;
 	}
-	
+
 	/**
 	 * 
 	 * @methodtype set
@@ -293,7 +291,7 @@ public class Photo extends DataObject {
 	public EmailAddress getOwnerEmailAddress() {
 		return ownerEmailAddress;
 	}
-	
+
 	/**
 	 * 
 	 * @methodtype set
@@ -309,7 +307,7 @@ public class Photo extends DataObject {
 	public Language getOwnerLanguage() {
 		return ownerLanguage;
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -325,7 +323,7 @@ public class Photo extends DataObject {
 	public URL getOwnerHomePage() {
 		return ownerHomePage;
 	}
-	
+
 	/**
 	 * 
 	 * @methodtype set
@@ -334,7 +332,7 @@ public class Photo extends DataObject {
 		ownerHomePage = newHomePage;
 		incWriteCount();
 	}
-	
+
 	/**
 	 * 
 	 * @methodtype boolean-query
@@ -350,7 +348,7 @@ public class Photo extends DataObject {
 	public boolean isWiderThanHigher() {
 		return (height * MAX_PHOTO_WIDTH) < (width * MAX_PHOTO_HEIGHT);
 	}
-	
+
 	/**
 	 * 
 	 * @methodtype get
@@ -358,7 +356,7 @@ public class Photo extends DataObject {
 	public int getWidth() {
 		return width;
 	}
-	
+
 	/**
 	 * 
 	 * @methodtype get
@@ -366,23 +364,25 @@ public class Photo extends DataObject {
 	public int getHeight() {
 		return height;
 	}
-	
+
 	/**
 	 * 
 	 * @methodtype get
 	 */
 	public int getThumbWidth() {
-		return isWiderThanHigher() ? MAX_THUMB_PHOTO_WIDTH : (width * MAX_THUMB_PHOTO_HEIGHT / height);
+		return isWiderThanHigher() ? MAX_THUMB_PHOTO_WIDTH : (width
+				* MAX_THUMB_PHOTO_HEIGHT / height);
 	}
-	
+
 	/**
 	 * 
 	 * @methodtype get
 	 */
 	public int getThumbHeight() {
-		return isWiderThanHigher() ? (height * MAX_THUMB_PHOTO_WIDTH / width) : MAX_THUMB_PHOTO_HEIGHT;
+		return isWiderThanHigher() ? (height * MAX_THUMB_PHOTO_WIDTH / width)
+				: MAX_THUMB_PHOTO_HEIGHT;
 	}
-	
+
 	/**
 	 * 
 	 * @methodtype set
@@ -395,7 +395,7 @@ public class Photo extends DataObject {
 
 		incWriteCount();
 	}
-	
+
 	/**
 	 * Can this photo satisfy provided photo size?
 	 * 
@@ -404,7 +404,7 @@ public class Photo extends DataObject {
 	public boolean hasPhotoSize(PhotoSize size) {
 		return maxPhotoSize.asInt() >= size.asInt();
 	}
-	
+
 	/**
 	 * 
 	 * @methodtype get
@@ -412,7 +412,7 @@ public class Photo extends DataObject {
 	public PhotoSize getMaxPhotoSize() {
 		return maxPhotoSize;
 	}
-	
+
 	/**
 	 * 
 	 * @methodtype get
@@ -420,7 +420,7 @@ public class Photo extends DataObject {
 	public double getPraise() {
 		return (double) praiseSum / noVotes;
 	}
-	
+
 	/**
 	 * 
 	 * @methodtype get
@@ -428,7 +428,7 @@ public class Photo extends DataObject {
 	public String getPraiseAsString(ModelConfig cfg) {
 		return cfg.asPraiseString(getPraise());
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -437,7 +437,7 @@ public class Photo extends DataObject {
 		noVotes += 1;
 		incWriteCount();
 	}
-	
+
 	/**
 	 * 
 	 * @methodtype boolean-query
@@ -445,7 +445,7 @@ public class Photo extends DataObject {
 	public boolean isVisible() {
 		return status.isDisplayable();
 	}
-	
+
 	/**
 	 * 
 	 * @methodtype get
@@ -453,7 +453,7 @@ public class Photo extends DataObject {
 	public PhotoStatus getStatus() {
 		return status;
 	}
-	
+
 	/**
 	 * 
 	 * @methodtype set
@@ -462,7 +462,7 @@ public class Photo extends DataObject {
 		status = newStatus;
 		incWriteCount();
 	}
-	
+
 	/**
 	 * 
 	 * @methodtype boolean-query
@@ -470,7 +470,7 @@ public class Photo extends DataObject {
 	public boolean hasTag(String tag) {
 		return tags.hasTag(tag);
 	}
-	
+
 	/**
 	 * 
 	 * @methodtype get
@@ -487,27 +487,7 @@ public class Photo extends DataObject {
 		tags = newTags;
 		incWriteCount();
 	}
-	
-	
-	/**
-	 * 
-	 * @methodtype get
-	 */
-	public String getLocation() {
-		return new LocationTransformation(this.location).getLocation();
-	}
-	
-	
-	/**
-	 * 
-	 * @methodtype set
-	 */
-	public void setLocation(String loc) {
-		this.location = loc;
-		incWriteCount();
-	}
-	
-	
+
 	/**
 	 * 
 	 * @methodtype get
@@ -515,5 +495,43 @@ public class Photo extends DataObject {
 	public long getCreationTime() {
 		return creationTime;
 	}
-	
+
+	/**
+	 * @return
+	 */
+	public String getLocation() {
+
+		Location gps = new GPSLocation();
+		Location mapcode = new MapCodeLocation();
+
+		if (new GPSLocation().doGetLocationType(this.locationVal)) {
+
+			mapcode.setLocation(
+					Double.parseDouble(this.locationVal.split(",")[0]),
+					Double.parseDouble(this.locationVal.split(",")[1]));
+			return mapcode.getMapCode();
+
+		} else {
+
+			try {
+				gps.setLocation(this.locationVal);
+				return String.valueOf(gps.getLatitude()) + ","
+						+ String.valueOf(gps.getLongitude());
+			} catch (IllegalArgumentException e) {
+				e.printStackTrace();
+			}
+		}
+
+		return "";
+	}
+
+	/**
+	 * @param location
+	 */
+	public void setLocation(Location location) {
+		this.location = location;
+		incWriteCount();
+		assert (this.location == location);
+	}
+
 }

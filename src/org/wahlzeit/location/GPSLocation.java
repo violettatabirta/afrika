@@ -5,49 +5,92 @@ import com.mapcode.MapcodeCodec;
 import com.mapcode.Point;
 import com.mapcode.UnknownMapcodeException;
 
-public class GPSLocation extends Location {
+/**
+ * @author Violetta Tabirta
+ *
+ */
+public class GPSLocation extends LocationAbstract {
 
-	public static double LATITUDE = 0.0;
-	public static double LONGITUDE = 0.0;
+	public double latitude = 0.0;
+	public double longitude = 0.0;
 
-	public static double getLatitude() {
-		return LATITUDE;
+	/**
+	 * 
+	 */
+	public GPSLocation() {
+		this(0, 0);
 	}
 
-	public static void setLatitude(double latitude) {
-		LATITUDE = latitude;
+	/**
+	 * @param latitude
+	 * @param longitude
+	 */
+	public GPSLocation(double latitude, double longitude) {
+		doSetLocation(latitude, longitude);
 	}
 
-	public static double getLongitude() {
-		return LONGITUDE;
-	}
-	
-	public static void setLongitude(double longitude) {
-		LONGITUDE = longitude;
-	}
-	
-	//constructor
-	public GPSLocation() {}
-	
-	
-	
-	// decode a Mapcode to a point, which also includes a territory-name
-	//
-	public Point mapcodeDecode(final String mc) {
 
-		try {
-			return MapcodeCodec.decode(mc);
-		} catch (final UnknownMapcodeException ignored) {
-			System.out
-					.println("This should never happen in this example as the Mapcode is valid.");
-		}
-
-		return null;
+	@Override
+	protected void doSetLocation(double latitude, double longitude) {
+		doSetLatitude(latitude);
+		doSetLongitude(longitude);
 	}
 
 	@Override
-	String GPSDecode(double lat, double lon) {
-		// TODO Auto-generated method stub
-		return null;
+	protected void doSetLocation(String mapCode) {
+		Point GPSCoordinates;
+		try {
+			GPSCoordinates = MapcodeCodec.decode(mapCode);
+			doSetLatitude(GPSCoordinates.getLatDeg());
+			doSetLongitude(GPSCoordinates.getLonDeg());
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (UnknownMapcodeException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	@Override
+	protected double doGetLatitude() {
+		return this.latitude;
+	}
+
+	/**
+	 * @param latitude
+	 */
+	private final void doSetLatitude(double latitude) {
+		this.latitude = latitude;
+
+		assert (this.latitude == latitude);
+	}
+
+	@Override
+	protected double doGetLongitude() {
+		return this.longitude;
+	}
+
+	/**
+	 * @param longitude
+	 */
+	private final void doSetLongitude(double longitude) {
+		this.longitude = longitude;
+
+		assert (this.longitude == longitude);
+	}
+
+	@Override
+	protected String doGetMapCode() {
+		Mapcode mapCodeElement = MapcodeCodec.encode(doGetLatitude(), doGetLongitude())
+				.get(0);
+		
+		return mapCodeElement.getTerritory().toString() + " "
+				+ mapCodeElement.getMapcode().toString();
+	}
+
+	@Override
+	protected String doGetAsString() {
+		return String.valueOf(doGetLatitude()) + ","
+				+ String.valueOf(doGetLongitude());
 	}
 }
