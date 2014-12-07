@@ -11,20 +11,23 @@ import org.wahlzeit.model.PhotoId;
  *
  */
 public class AfrikaPhoto extends Photo {
+
+	AbstractClime sutropicalClime = new SubtropicalClimate();
+
+	IResidents subtropicalResidents = sutropicalClime.createPopulation();
+	IVegetation subtropicalVegetation = sutropicalClime.createVegetation();
+	IWater subtropicalWater = sutropicalClime.createWater();
+
+	public static final String CLIME = "clime";
+	public static final String VEGETATION = "vegetation";
+	public static final String RESIDENTS = "residents";
+	public static final String WATER = "water";
+
+	protected String clime = "Subtropical Clime";
+	protected String vegetation = subtropicalVegetation.getVegetation();
+	protected String residents = subtropicalResidents.getResidents();
+	protected String water = subtropicalWater.getWater();
 	
-	AfrikaCategory afrika = new AfrikaCriteria(AfrikaClime.ClimateZone1, AfrikaVegetation.VegetationZone2, AfrikaResidents.Residents14, AfrikaWater.Water3);
-	
-
-	public static final String CLIME = "clime"; 
-	public static final String VEGETATION = "vegetation"; 
-	public static final String RESIDENTS = "residents"; 
-	public static final String WATER = "water"; 
-
-	protected String clime = afrika.getClime();
-	protected String vegetation = afrika.getVegetation();
-	protected String residents = afrika.getResidents();
-	protected String water = afrika.getWater();
-
 	/**
 	 * 
 	 */
@@ -51,20 +54,16 @@ public class AfrikaPhoto extends Photo {
 
 	
 	public void readFrom(ResultSet rset) throws SQLException  {
-
-		
 			super.readFrom(rset);
 			
 			clime = rset.getString(CLIME);
 			vegetation = rset.getString(VEGETATION);
 			residents = rset.getString(RESIDENTS);
 			water = rset.getString(WATER);
-		
 	}
 
 	
 	public void writeOn(ResultSet rset) throws SQLException {
-
 		super.writeOn(rset);
 
 		rset.updateString(CLIME, clime);
