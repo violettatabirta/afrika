@@ -11,16 +11,25 @@ public class Residents implements IResidents {
 
 	private static String resident;
 
+	/**
+	 * 
+	 */
 	public Residents() {
 		this(AfrikaResidents.Residents1);
 	}
 
+	/**
+	 * @param residents
+	 */
 	public Residents(AfrikaResidents residents) {
 		assertInvariants(residents.toString());
 		
 		setResidents(residents);
 	}
 
+	/**
+	 * @param obj
+	 */
 	private void assertInvariants(String obj) {
 		assert obj != null;
 	}
@@ -34,7 +43,7 @@ public class Residents implements IResidents {
 	public void setResidents(AfrikaResidents residents) {
 		assertInvariants(residents.toString());
 
-		this.resident = resident.toString();
+		this.resident = residents.toString();
 	}
 
 	/*
