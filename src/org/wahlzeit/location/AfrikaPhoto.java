@@ -17,8 +17,6 @@ public class AfrikaPhoto extends Photo {
 			getVegetation() , getWater()));
 	
 
-
-	
 	IResidents subtropicalResidents = climeFactory.createPopulation();
 	IVegetation subtropicalVegetation = climeFactory.createVegetation();
 	IWater subtropicalWater = climeFactory.createWater();
@@ -31,7 +29,7 @@ public class AfrikaPhoto extends Photo {
 	protected String clime = "Warm Temperate Climate";
 	protected String vegetation = subtropicalVegetation.getVegetation();
 	protected String residents = subtropicalResidents.getResidents();
-	protected String water = subtropicalWater.getWater();
+	protected String water = subtropicalWater.getWater(); 
 
 	/**
 	 * 
