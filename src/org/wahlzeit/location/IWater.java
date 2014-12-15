@@ -8,9 +8,9 @@ package org.wahlzeit.location;
  * 
  */
 public interface IWater {
-	void setWater(AfrikaWater water);
+	void setWater(String water);
 
 	String getWater();
 	
-	void addWater(AfrikaWater water);
+	void addWater(String water);
 }

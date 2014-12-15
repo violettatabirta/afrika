@@ -22,6 +22,7 @@ package org.wahlzeit.handlers;
 
 import java.util.*;
 
+import org.wahlzeit.location.AfrikaPhoto;
 import org.wahlzeit.model.*;
 import org.wahlzeit.services.*;
 import org.wahlzeit.utils.*;
@@ -81,7 +82,7 @@ public class ShowPhotoPageHandler extends AbstractWebPageHandler implements WebF
 	 * 
 	 */
 	protected void makeWebPageBody(UserSession us, WebPart page) {
-		Photo photo = us.getPhoto();
+		AfrikaPhoto photo = (AfrikaPhoto) us.getPhoto();
 
 		makeLeftSidebar(us, page);
 
@@ -98,6 +99,11 @@ public class ShowPhotoPageHandler extends AbstractWebPageHandler implements WebF
 			page.addString(Photo.DESCRIPTION, getPhotoSummary(us, photo));
 			page.addString(Photo.KEYWORDS, tags.asString(false, ','));
 
+			page.addString(Photo.LOCATION, "Location: " +photo.getLocation());
+			page.addString(AfrikaPhoto.RESIDENTS, "Residents: " +photo.getPopulation());
+			page.addString(AfrikaPhoto.VEGETATION, "Vegetation: " +photo.getVegetation());
+			page.addString(AfrikaPhoto.WATER, "Water: " +photo.getWater());
+			
 			us.addDisplayedPhoto(photo);
 		}
 		

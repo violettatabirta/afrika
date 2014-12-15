@@ -12,11 +12,11 @@ public class Water implements IWater {
 	public static String Water; 
 	
 	public Water(){
-		this(AfrikaWater.Water1);
+		this("");
 	}
 	
-	public Water(AfrikaWater water){
-		assertInvariants(water.toString());
+	public Water(String water){
+		assertInvariants(water);
 		
 		setWater(water);
 	}
@@ -30,10 +30,10 @@ public class Water implements IWater {
 	 * @see org.wahlzeit.location.IWater#setWater(org.wahlzeit.location.AfrikaWater)
 	 */
 	@Override
-	public void setWater(AfrikaWater water) {
-		assertInvariants(water.toString());
+	public void setWater(String water) {
+		assertInvariants(water);
 		
-		this.Water = water.toString(); 
+		this.Water = water; 
 	}
 
 	/* (non-Javadoc)
@@ -50,9 +50,9 @@ public class Water implements IWater {
 	 * @see org.wahlzeit.location.IWater#addWater(org.wahlzeit.location.AfrikaWater)
 	 */
 	@Override
-	public void addWater(AfrikaWater water) {
-		assertInvariants(water.toString());
+	public void addWater(String water) {
+		assertInvariants(water);
 		
-		this.Water += "; " +water.toString();
+		this.Water += "; " +water;
 	}
 }

@@ -23,6 +23,7 @@ package org.wahlzeit.handlers;
 import java.util.*;
 import java.io.*;
 
+import org.wahlzeit.location.AfrikaPhoto;
 import org.wahlzeit.model.*;
 import org.wahlzeit.services.*;
 import org.wahlzeit.utils.*;
@@ -57,7 +58,13 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 	 */
 	protected String doHandlePost(UserSession us, Map args) {
 		String tags = us.getAndSaveAsString(args, Photo.TAGS);
-
+		String mapcode = us.getAndSaveAsString(args, "mapcode");
+		String gpslocation = us.getAndSaveAsString(args, "gpslocation");
+		String vegetation = us.getAndSaveAsString(args, "vegetationId");
+		String residents = us.getAndSaveAsString(args, "residentsId");
+		String water = us.getAndSaveAsString(args, "waterId");
+		
+		
 		if (!StringUtil.isLegalTagsString(tags)) {
 			us.setMessage(us.cfg().getInputIsInvalid());
 			return PartUtil.UPLOAD_PHOTO_PAGE_NAME;
@@ -67,7 +74,7 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 			PhotoManager pm = PhotoManager.getInstance();
 			String sourceFileName = us.getAsString(args, "fileName");
 			File file = new File(sourceFileName);
-			Photo photo = pm.createPhoto(file);
+			AfrikaPhoto photo = (AfrikaPhoto) pm.createPhoto(file);
 
 			String targetFileName = SysConfig.getBackupDir().asString() + photo.getId().asString();
 			createBackup(sourceFileName, targetFileName);
@@ -77,6 +84,19 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 			
 			photo.setTags(new Tags(tags));
 
+			if(!mapcode.isEmpty()){
+				photo.setLocationVal(mapcode);
+			}else if(!gpslocation.isEmpty()){
+				photo.setLocationVal(gpslocation);
+			}else{
+				photo.setLocationVal("-26.432632, 34.522164");
+			}
+			
+			photo.setPopulation(residents);
+			photo.setVegetation(vegetation);
+			photo.setWater(water);
+			
+			
 			pm.savePhoto(photo);
 
 			StringBuffer sb = UserLog.createActionEntry("UploadPhoto");

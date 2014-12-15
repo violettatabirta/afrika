@@ -8,9 +8,9 @@ package org.wahlzeit.location;
  * 
  */
 public interface IResidents {
-	void setResidents(AfrikaResidents residents);
+	void setResidents(String residents);
 
 	String getResidents();
 	
-	void addResidents(AfrikaResidents residents);
+	void addResidents(String residents);
 }

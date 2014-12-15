@@ -11,16 +11,25 @@ public class Residents implements IResidents {
 
 	private static String resident;
 
+	/**
+	 * 
+	 */
 	public Residents() {
-		this(AfrikaResidents.Residents1);
+		this("");
 	}
 
-	public Residents(AfrikaResidents residents) {
-		assertInvariants(residents.toString());
+	/**
+	 * @param residents
+	 */
+	public Residents(String residents) {
+		assertInvariants(residents);
 		
 		setResidents(residents);
 	}
 
+	/**
+	 * @param obj
+	 */
 	private void assertInvariants(String obj) {
 		assert obj != null;
 	}
@@ -31,10 +40,10 @@ public class Residents implements IResidents {
 	 * @see org.wahlzeit.location.IResidents#setResidents()
 	 */
 	@Override
-	public void setResidents(AfrikaResidents residents) {
-		assertInvariants(residents.toString());
+	public void setResidents(String residents) {
+		assertInvariants(residents);
 
-		this.resident = resident.toString();
+		this.resident = residents;
 	}
 
 	/*
@@ -56,10 +65,10 @@ public class Residents implements IResidents {
 	 * @see org.wahlzeit.location.IResidents#addResidents()
 	 */
 	@Override
-	public void addResidents(AfrikaResidents residents) {
-		assertInvariants(residents.toString());
+	public void addResidents(String residents) {
+		assertInvariants(residents);
 		
-		this.resident += "; " + residents.toString();
+		this.resident += "; " + residents;
 	}
 
 }

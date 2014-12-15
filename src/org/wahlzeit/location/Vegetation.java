@@ -15,11 +15,11 @@ public class Vegetation implements IVegetation {
 	 * default vegetation zone value
 	 */
 	public Vegetation() {
-		this(AfrikaVegetation.VegetationZone1);
+		this("");
 	}
 
-	public Vegetation(AfrikaVegetation vegetationZone) {
-		assertInvariants(vegetationZone.toString());
+	public Vegetation(String vegetationZone) {
+		assertInvariants(vegetationZone);
 
 		setVegetation(vegetationZone);
 	}
@@ -34,10 +34,10 @@ public class Vegetation implements IVegetation {
 	 * @see org.wahlzeit.location.IVegetation#setVegetation(java.lang.String)
 	 */
 	@Override
-	public void setVegetation(AfrikaVegetation vegetationZone) {
-		assertInvariants(vegetationZone.toString());
+	public void setVegetation(String vegetationZone) {
+		assertInvariants(vegetationZone);
 
-		this.vegetationZone = vegetationZone.toString();
+		this.vegetationZone = vegetationZone;
 	}
 
 	/*

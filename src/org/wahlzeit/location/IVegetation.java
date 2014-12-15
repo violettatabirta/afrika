@@ -1,7 +1,7 @@
 package org.wahlzeit.location;
 
 public interface IVegetation {
-	void setVegetation(AfrikaVegetation vegetationZone);
+	void setVegetation(String vegetationZone);
 	
 	String getVegetation();
 }

@@ -55,6 +55,8 @@ public class Photo extends DataObject {
 	public static final String STATUS = "status";
 	public static final String IS_INVISIBLE = "isInvisible";
 	public static final String UPLOADED_ON = "uploadedOn";
+	
+	public static final String LOCATION = "location";
 
 	/**
 	 * 
@@ -110,7 +112,7 @@ public class Photo extends DataObject {
 	 * 
 	 */
 	protected Location location;
-	protected String locationVal = "-26.432632, 34.522164";
+	protected String locationVal = "";
 
 	/**
 	 * 
@@ -523,6 +525,14 @@ public class Photo extends DataObject {
 		}
 
 		return "";
+	}
+	
+	public void setLocationVal(String locVal){
+		this.locationVal = locVal;
+	}
+	
+	public String getLocationVal(){
+		return this.locationVal;
 	}
 
 	/**
