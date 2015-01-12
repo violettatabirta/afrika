@@ -21,8 +21,13 @@ public class Residents implements IResidents {
 	/**
 	 * @param residents
 	 */
+<<<<<<< HEAD
 	public Residents(String residents) {
 		assertInvariants(residents);
+=======
+	public Residents(AfrikaResidents residents) {
+		assertInvariants(residents.toString());
+>>>>>>> branch 'master' of https://github.com/violettatabirta/afrika
 		
 		setResidents(residents);
 	}
@@ -43,7 +48,11 @@ public class Residents implements IResidents {
 	public void setResidents(String residents) {
 		assertInvariants(residents);
 
+<<<<<<< HEAD
 		this.resident = residents;
+=======
+		this.resident = residents.toString();
+>>>>>>> branch 'master' of https://github.com/violettatabirta/afrika
 	}
 
 	/*

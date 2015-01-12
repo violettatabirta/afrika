@@ -41,6 +41,7 @@ public class AfrikaPhotoTest extends TestCase {
 		TestCase.assertTrue(afrikaPhoto.subtropicalResidents != null);
 		TestCase.assertTrue(afrikaPhoto.subtropicalVegetation != null);
 		TestCase.assertTrue(afrikaPhoto.subtropicalWater != null);
+<<<<<<< HEAD
 	
 	}
 
@@ -56,5 +57,8 @@ public class AfrikaPhotoTest extends TestCase {
 		TestCase.assertTrue(vegetation.toString() != AfrikaVegetation.VegetationZone5
 				.toString());
 		TestCase.assertTrue(water.toString() != AfrikaWater.Water5.toString());
+=======
+		
+>>>>>>> branch 'master' of https://github.com/violettatabirta/afrika
 	}
 }
