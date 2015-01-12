@@ -10,6 +10,7 @@ public enum AfrikaWater {
 	Water7("Niger River"),
 	Water8("Zambezi");
 	
+	private static final String[] array;
 	
 	/**
 	 * 
@@ -35,4 +36,11 @@ public enum AfrikaWater {
 	private void assertInvariants() {
 		assert name != null;
 	}
+	
+	static {
+	    array = new String[AfrikaWater.values().length];
+	    for (AfrikaWater value : AfrikaWater.values())
+	        array[value.ordinal()] = value.toString();
+	}
+	public static String[] toArray () { return array; }
 }

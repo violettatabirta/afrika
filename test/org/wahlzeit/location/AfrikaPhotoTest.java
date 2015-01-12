@@ -41,6 +41,7 @@ public class AfrikaPhotoTest extends TestCase {
 		TestCase.assertTrue(afrikaPhoto.subtropicalResidents != null);
 		TestCase.assertTrue(afrikaPhoto.subtropicalVegetation != null);
 		TestCase.assertTrue(afrikaPhoto.subtropicalWater != null);
+	
 	}
 
 	public void testClimeFactory() {

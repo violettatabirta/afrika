@@ -18,6 +18,8 @@ public enum AfrikaResidents {
 	Residents15("Hutu"),
 	Residents16("Kamba");
 	
+	private static final String[] array;
+	
 	/**
 	 * 
 	 */
@@ -42,4 +44,11 @@ public enum AfrikaResidents {
 	private void assertInvariants() {
 		assert name != null;
 	}
+	
+	static {
+	    array = new String[AfrikaResidents.values().length];
+	    for (AfrikaResidents value : AfrikaResidents.values())
+	        array[value.ordinal()] = value.toString();
+	}
+	public static String[] toArray () { return array; }
 }

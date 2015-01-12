@@ -19,6 +19,9 @@ public enum AfrikaVegetation {
 	VegetationZone11("subtropical dry forest"),
 	VegetationZone12("ropical rainforest")	;
 
+	
+	private static final String[] array;
+	
 	/**
 	 * 
 	 */
@@ -43,4 +46,11 @@ public enum AfrikaVegetation {
 	private void assertInvariants() {
 		assert name != null;
 	}
+	
+	static {
+	    array = new String[AfrikaVegetation.values().length];
+	    for (AfrikaVegetation value : AfrikaVegetation.values())
+	        array[value.ordinal()] = value.toString();
+	}
+	public static String[] toArray () { return array; }
 }

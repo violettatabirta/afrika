@@ -1,58 +1,63 @@
-<form action="uploadPhotoForm.form" method="post" enctype="multipart/form-data" name="uploadPhotoForm">
+<form action="uploadPhotoForm.form" method="post"
+	enctype="multipart/form-data" name="uploadPhotoForm">
 
 	<h2>Ein Foto hochladen!</h2>
-	<p><b>{$message}</b></p>
-
-	<table class="border"><tr><td class="spacer"><table class="form">
-		<tr>
-			<td class="twoCol1">Dateiname:&nbsp;</td>
-			<td class="twoCol2"><input type="file" name="file" value="" size="32" /></td>
-		</tr>
-		<tr>
-			<td class="twoCol1">Foto-Tags:&nbsp;</td>
-			<td class="twoCol2"><input type="text" name="tags" value="{$tags}" size="48" /></td>
-		</tr>
-		<tr>
-			<td class="twoCol1">Location (lat,long):&nbsp;</td>
-			<td class="twoCol2"><input type="text" name="gpslocation" value="{$lat}" size="48" /></td>
-		</tr>
-		<tr>
-			<td class="twoCol1">Mapcode:&nbsp;</td>
-			<td class="twoCol2"><input type="text" name="mapcode" value="{$mapcode}" size="48" /></td>
-		</tr>
-		<tr>
-			<td class="twoCol1">Vegetation:&nbsp;</td>
-			<td class="twoCol2"><input type="text" name="vegetationId" value="{$vegetation}" size="48" /></td>
-		</tr>
-		<tr>
-			<td class="twoCol1">Residents:&nbsp;</td>
-			<td class="twoCol2"><input type="text" name="residentsId" value="{$residents}" size="48" /></td>
-		</tr>
-		<tr>
-			<td class="twoCol1">Water:&nbsp;</td>
-			<td class="twoCol2"><input type="text" name="waterId" value="{$water}" size="48" /></td>
-		</tr>
-		<!-- <tr>
-			<td class="twoCol1">Vegetation:&nbsp;</td>
-			<td class="twoCol2"><select name="vegetationId">{$vegetation}</select></td>
-		</tr>
-		<tr>
-			<td class="twoCol1">Residents:&nbsp;</td>
-			<td class="twoCol2"><select name="residentsId">{$residents}</select></td>
-		</tr>
-		<tr>
-			<td class="twoCol1">Water:&nbsp;</td>
-			<td class="twoCol2"><select name="waterId">{$water}</select></td>
-		</tr> -->
-		<tr>
-			<td class="twoCol1">&nbsp;</td>
-			<td class="twoCol2"><input type="submit" name="upload" value="Upload!" /></td>
-		</tr>
-	</table></td></tr></table>
-	
 	<p>
-		If you need to upload many photos at once, 
-		please <a href="contact.html">contact us</a>!
+		<b>{$message}</b>
+	</p>
+
+	<table class="border">
+		<tr>
+			<td class="spacer"><table class="form">
+					<tr>
+						<td class="twoCol1">Dateiname:&nbsp;</td>
+						<td class="twoCol2"><input type="file" name="file" value=""
+							size="32" /></td>
+					</tr>
+					<tr>
+						<td class="twoCol1">Foto-Tags:&nbsp;</td>
+						<td class="twoCol2"><input type="text" name="tags"
+							value="{$tags}" size="48" /></td>
+					</tr>
+					<tr>
+						<td class="twoCol1">Location (lat,long):&nbsp;</td>
+						<td class="twoCol2"><input type="text" name="gpslocation"
+							value="{$lat}" size="48" /></td>
+					</tr>
+					<tr>
+						<td class="twoCol1">Mapcode:&nbsp;</td>
+						<td class="twoCol2"><input type="text" name="mapcode"
+							value="{$mapcode}" size="48" /></td>
+					</tr>
+					<tr>
+						<td class="twoCol1">Vegetation:&nbsp;</td>
+						<td class="twoCol2"><select name="vegetationId"
+							value="{$vegetation}"></td>
+					</tr>
+					<tr>
+						<td class="twoCol1">Residents:&nbsp;</td>
+						<td class="twoCol2"><select name="residentsId"
+							value="{$residents}">
+						</select></td>
+					</tr>
+					<tr>
+						<td class="twoCol1">Water:&nbsp;</td>
+						<td class="twoCol2"><select name="waterId" value="{$water}">
+						</select></td>
+					</tr>
+
+					<tr>
+						<td class="twoCol1">&nbsp;</td>
+						<td class="twoCol2"><input type="submit" name="upload"
+							value="Upload!" /></td>
+					</tr>
+				</table></td>
+		</tr>
+	</table>
+
+	<p>
+		If you need to upload many photos at once, please <a
+			href="contact.html">contact us</a>!
 	</p>
 
 </form>
