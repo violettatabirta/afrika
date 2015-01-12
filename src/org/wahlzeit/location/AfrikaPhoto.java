@@ -13,10 +13,19 @@ import org.wahlzeit.model.PhotoId;
 public class AfrikaPhoto extends Photo {
 
 	ClimeFactory climeFactory = new AfrikaClime(new AfrikaClimeType(
+<<<<<<< HEAD
 			"Warm Temperate Climate",  getPopulation(),
 			getVegetation() , getWater()));
 	
+=======
+			"Warm Temperate Climate", AfrikaResidents.Residents15,
+			AfrikaVegetation.VegetationZone2, AfrikaWater.Water5));
+>>>>>>> branch 'master' of https://github.com/violettatabirta/afrika
 
+<<<<<<< HEAD
+=======
+	
+>>>>>>> branch 'master' of https://github.com/violettatabirta/afrika
 	IResidents subtropicalResidents = climeFactory.createPopulation();
 	IVegetation subtropicalVegetation = climeFactory.createVegetation();
 	IWater subtropicalWater = climeFactory.createWater();
@@ -29,7 +38,11 @@ public class AfrikaPhoto extends Photo {
 	protected String clime = "Warm Temperate Climate";
 	protected String vegetation = subtropicalVegetation.getVegetation();
 	protected String residents = subtropicalResidents.getResidents();
+<<<<<<< HEAD
 	protected String water = subtropicalWater.getWater(); 
+=======
+	protected String water = subtropicalWater.getWater();
+>>>>>>> branch 'master' of https://github.com/violettatabirta/afrika
 
 	/**
 	 * 
