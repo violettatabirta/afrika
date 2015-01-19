@@ -15,14 +15,14 @@ public class Water implements IWater {
 		this("");
 	}
 	
-	public Water(String water){
+	public Water(String water) throws  IllegalStateException, NumberFormatException, StringIndexOutOfBoundsException{
 		assertInvariants(water);
 		
 		setWater(water);
 	}
 	
 	
-	private void assertInvariants(String obj) {
+	private void assertInvariants(String obj) throws AssertionError {
 		assert obj != null;
 	}
 	

@@ -18,13 +18,13 @@ public class Vegetation implements IVegetation {
 		this("");
 	}
 
-	public Vegetation(String vegetationZone) {
+	public Vegetation(String vegetationZone) throws IllegalStateException, StringIndexOutOfBoundsException {
 		assertInvariants(vegetationZone);
 
 		setVegetation(vegetationZone);
 	}
 
-	private void assertInvariants(String obj) {
+	private void assertInvariants(String obj) throws AssertionError {
 		assert obj != null;
 	}
 

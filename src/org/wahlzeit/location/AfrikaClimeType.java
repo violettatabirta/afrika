@@ -13,7 +13,6 @@ import java.util.Map;
 public class AfrikaClimeType {
 
 	private String name;
-<<<<<<< HEAD
 	private String population;
 	private String vegetation;
 	private String water;
@@ -29,7 +28,7 @@ public class AfrikaClimeType {
 	 * @param water
 	 */
 	public AfrikaClimeType(String name, String population,
-			String vegetation, String water) {
+			String vegetation, String water) throws AssertionError, IllegalStateException, IllegalArgumentException, StringIndexOutOfBoundsException {
 
 		assert name != null : "Name can not to be empty";
 		assert population != null : "Population can not to be empty";
@@ -47,7 +46,7 @@ public class AfrikaClimeType {
 	 * @param name
 	 * @param afrikaClimeType
 	 */
-	public void put(String name, AfrikaClimeType afrikaClimeType) {
+	public void put(String name, AfrikaClimeType afrikaClimeType) throws AssertionError, IllegalStateException, IllegalArgumentException, StringIndexOutOfBoundsException {
 		assert name != null : "Name can not to be empty";
 		assert afrikaClimeType != null : "AfrikaClimeType can not to be empty";
 
@@ -58,7 +57,7 @@ public class AfrikaClimeType {
 	 * @param name
 	 * @return
 	 */
-	public AfrikaClimeType get(String name) {
+	public AfrikaClimeType get(String name) throws AssertionError, IllegalStateException, IllegalArgumentException, StringIndexOutOfBoundsException {
 		assert name != null : "Name can not to be empty";
 
 		return propertyAfrikaClime.get(name);
@@ -67,7 +66,7 @@ public class AfrikaClimeType {
 	/**
 	 * @return
 	 */
-	public String getName() {
+	public String getName() throws AssertionError  {
 		assert name != null : "Name can not to be empty";
 
 		return name;
@@ -76,7 +75,7 @@ public class AfrikaClimeType {
 	/**
 	 * @return
 	 */
-	public AfrikaClime makeAfrikaClimeInstance() {
+	public AfrikaClime makeAfrikaClimeInstance()  {
 		assert this != null : "AfrikaClimeType can not to be empty and instanciated";
 
 		return new AfrikaClime(this);
@@ -85,7 +84,7 @@ public class AfrikaClimeType {
 	/**
 	 * @return
 	 */
-	public String getResidents() {
+	public String getResidents() throws AssertionError, IllegalStateException {
 		assert population != null : "Population can not to be empty";
 		return population;
 	}
@@ -93,68 +92,13 @@ public class AfrikaClimeType {
 	/**
 	 * @return
 	 */
-	public String getVegetation() {
+	public String getVegetation() throws AssertionError, IllegalStateException, IllegalArgumentException {
 		assert vegetation != null : "Vegetation can not to be empty";
 		
 		return vegetation;
 	}
 
-	/**
-	 * @return
-	 */
-	public String getWater() {
-		assert water != null : "Water has not to be empty";
-		
-=======
-	private AfrikaResidents population;
-	private AfrikaVegetation vegetation;
-	private AfrikaWater water;
-
-	private Map<String, AfrikaClimeType> propertyAfrikaClime;
-	public static final AfrikaClimeType VOID_TYPE = new AfrikaClimeType(
-			"Warm Temperate Climate", AfrikaResidents.Residents11,
-			AfrikaVegetation.VegetationZone5, AfrikaWater.Water5);
-
-	/**
-	 * @param population
-	 * @param vegetation
-	 * @param water
-	 */
-	public AfrikaClimeType(String name, AfrikaResidents population,
-			AfrikaVegetation vegetation, AfrikaWater water) {
-		this.name = name;
-		this.population = population;
-		this.vegetation = vegetation;
-		this.water = water;
-		this.propertyAfrikaClime = new Hashtable<String, AfrikaClimeType>();
-	}
-
-	public void put(String name, AfrikaClimeType afrikaClimeType) {
-		propertyAfrikaClime.put(name, afrikaClimeType);
-	}
-
-	public AfrikaClimeType get(String name) {
-		return propertyAfrikaClime.get(name);
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public AfrikaClime makeAfrikaClimeInstance() {
-		return new AfrikaClime(this);
-	}
-
-	public AfrikaResidents getResidents() {
-		return population;
-	}
-
-	public AfrikaVegetation getVegetation() {
-		return vegetation;
-	}
-
-	public AfrikaWater getWater() {
->>>>>>> branch 'master' of https://github.com/violettatabirta/afrika
+	public String getWater() throws IllegalStateException, IllegalArgumentException  {
 		return water;
 	}
 

@@ -81,7 +81,7 @@ public class ShowPhotoPageHandler extends AbstractWebPageHandler implements WebF
 	/**
 	 * 
 	 */
-	protected void makeWebPageBody(UserSession us, WebPart page) {
+	protected void makeWebPageBody(UserSession us, WebPart page) throws AssertionError, IllegalStateException, IllegalArgumentException {
 		AfrikaPhoto photo = (AfrikaPhoto) us.getPhoto();
 
 		makeLeftSidebar(us, page);

@@ -49,7 +49,7 @@ public class UploadPhotoFormHandler extends AbstractWebFormHandler {
 	/**
 	 * 
 	 */
-	protected void doMakeWebPart(UserSession us, WebPart part) {
+	protected void doMakeWebPart(UserSession us, WebPart part) throws AssertionError, IllegalStateException, IllegalArgumentException {
 		Map<String, Object> args = us.getSavedArgs();
 		part.addStringFromArgs(args, UserSession.MESSAGE);
 

@@ -28,7 +28,7 @@ public enum AfrikaResidents {
 	/**
 	 * @param s
 	 */
-	private AfrikaResidents(String s) {
+	private AfrikaResidents(String s) throws IllegalStateException, IllegalArgumentException, StringIndexOutOfBoundsException  {
 		name = s;
 		
 		assertInvariants();
@@ -41,7 +41,7 @@ public enum AfrikaResidents {
 		return name;
 	}
 	
-	private void assertInvariants() {
+	private void assertInvariants() throws AssertionError  {
 		assert name != null;
 	}
 	

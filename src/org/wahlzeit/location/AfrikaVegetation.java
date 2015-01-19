@@ -30,7 +30,7 @@ public enum AfrikaVegetation {
 	/**
 	 * @param s
 	 */
-	private AfrikaVegetation(String s) {
+	private AfrikaVegetation(String s) throws IllegalStateException, IllegalArgumentException, StringIndexOutOfBoundsException  {
 		name = s;
 		
 		assertInvariants();
@@ -39,11 +39,11 @@ public enum AfrikaVegetation {
 	/* (non-Javadoc)
 	 * @see java.lang.Enum#toString()
 	 */
-	public String toString() {
+	public String toString()  {
 		return name;
 	}
 	
-	private void assertInvariants() {
+	private void assertInvariants() throws AssertionError  {
 		assert name != null;
 	}
 	

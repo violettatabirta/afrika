@@ -20,7 +20,7 @@ public enum AfrikaWater {
 	/**
 	 * @param s
 	 */
-	private AfrikaWater(String s) {
+	private AfrikaWater(String s) throws IllegalStateException, IllegalArgumentException  {
 		name = s;
 	
 		assertInvariants();
@@ -33,7 +33,7 @@ public enum AfrikaWater {
 		return name;
 	}
 	
-	private void assertInvariants() {
+	private void assertInvariants() throws AssertionError  {
 		assert name != null;
 	}
 	

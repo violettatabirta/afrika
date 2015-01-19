@@ -27,7 +27,7 @@ public abstract class LocationAbstract implements Location {
 	/**
 	 * @param mapCode
 	 */
-	protected abstract void doSetLocation(String mapCode);
+	protected abstract void doSetLocation(String mapCode) throws AssertionError, IllegalStateException, StringIndexOutOfBoundsException;
 
 	/* (non-Javadoc)
 	 * @see org.wahlzeit.location.Location#setLocation(java.lang.String)

@@ -13,19 +13,11 @@ import org.wahlzeit.model.PhotoId;
 public class AfrikaPhoto extends Photo {
 
 	ClimeFactory climeFactory = new AfrikaClime(new AfrikaClimeType(
-<<<<<<< HEAD
 			"Warm Temperate Climate",  getPopulation(),
 			getVegetation() , getWater()));
 	
-=======
 			"Warm Temperate Climate", AfrikaResidents.Residents15,
 			AfrikaVegetation.VegetationZone2, AfrikaWater.Water5));
->>>>>>> branch 'master' of https://github.com/violettatabirta/afrika
-
-<<<<<<< HEAD
-=======
-	
->>>>>>> branch 'master' of https://github.com/violettatabirta/afrika
 	IResidents subtropicalResidents = climeFactory.createPopulation();
 	IVegetation subtropicalVegetation = climeFactory.createVegetation();
 	IWater subtropicalWater = climeFactory.createWater();
@@ -38,11 +30,7 @@ public class AfrikaPhoto extends Photo {
 	protected String clime = "Warm Temperate Climate";
 	protected String vegetation = subtropicalVegetation.getVegetation();
 	protected String residents = subtropicalResidents.getResidents();
-<<<<<<< HEAD
 	protected String water = subtropicalWater.getWater(); 
-=======
-	protected String water = subtropicalWater.getWater();
->>>>>>> branch 'master' of https://github.com/violettatabirta/afrika
 
 	/**
 	 * 
@@ -108,21 +96,21 @@ public class AfrikaPhoto extends Photo {
 	/**
 	 * @param population
 	 */
-	public void setPopulation(String population){
+	public void setPopulation(String population) throws IllegalStateException, IllegalArgumentException,StringIndexOutOfBoundsException  {
 		this.residents = population;
 	}
 	
 	/**
 	 * @return
 	 */
-	public String getWater(){
+	public String getWater() throws AssertionError, IllegalStateException {
 		return this.water;
 	}
 	
 	/**
 	 * @param water
 	 */
-	public void setWater(String water){
+	public void setWater(String water) throws IllegalStateException, IllegalArgumentException, StringIndexOutOfBoundsException  {
 		this.water = water;
 	}
 }

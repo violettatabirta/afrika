@@ -25,7 +25,7 @@ public class GPSLocation extends LocationAbstract {
 	 * @param latitude
 	 * @param longitude
 	 */
-	public GPSLocation(double latitude, double longitude) {
+	public GPSLocation(double latitude, double longitude) throws AssertionError, IllegalStateException, IllegalArgumentException, NumberFormatException {
 		doSetLocation(latitude, longitude);
 	}
 
