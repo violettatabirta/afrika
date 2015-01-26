@@ -23,9 +23,9 @@ package org.wahlzeit.model;
 import java.sql.*;
 import java.net.*;
 
-import org.wahlzeit.location.GPSLocation;
-import org.wahlzeit.location.Location;
-import org.wahlzeit.location.MapCodeLocation;
+import org.violettatabirta.adap.GPSLocation;
+import org.violettatabirta.adap.Location;
+import org.violettatabirta.adap.MapCodeLocation;
 import org.wahlzeit.services.*;
 import org.wahlzeit.utils.*;
 

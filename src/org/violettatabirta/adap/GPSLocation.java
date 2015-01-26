@@ -1,4 +1,4 @@
-package org.wahlzeit.location;
+package org.violettatabirta.adap;
 
 import com.mapcode.Mapcode;
 import com.mapcode.MapcodeCodec;

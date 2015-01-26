@@ -5,7 +5,7 @@
  * @author Violetta Tabirta
  *
  */
-package org.wahlzeit.location;
+package org.violettatabirta.adap;
 
 
 public abstract class LocationAbstract implements Location {

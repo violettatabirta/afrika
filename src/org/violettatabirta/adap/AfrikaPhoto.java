@@ -1,4 +1,4 @@
-package org.wahlzeit.location;
+package org.violettatabirta.adap;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

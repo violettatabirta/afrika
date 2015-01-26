@@ -22,7 +22,7 @@ package org.wahlzeit.handlers;
 
 import java.util.*;
 
-import org.wahlzeit.location.AfrikaPhoto;
+import org.violettatabirta.adap.AfrikaPhoto;
 import org.wahlzeit.model.*;
 import org.wahlzeit.services.*;
 import org.wahlzeit.utils.*;

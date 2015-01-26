@@ -3,6 +3,16 @@
  */
 package org.wahlzeit.location;
 
+import org.violettatabirta.adap.AfrikaClime;
+import org.violettatabirta.adap.AfrikaClimeType;
+import org.violettatabirta.adap.AfrikaPhoto;
+import org.violettatabirta.adap.AfrikaResidents;
+import org.violettatabirta.adap.AfrikaVegetation;
+import org.violettatabirta.adap.AfrikaWater;
+import org.violettatabirta.adap.ClimeFactory;
+import org.violettatabirta.adap.IResidents;
+import org.violettatabirta.adap.IVegetation;
+import org.violettatabirta.adap.IWater;
 import org.wahlzeit.model.PhotoFactory;
 
 import junit.framework.TestCase;

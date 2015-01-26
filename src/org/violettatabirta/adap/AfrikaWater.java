@@ -1,4 +1,4 @@
-package org.wahlzeit.location;
+package org.violettatabirta.adap;
 
 public enum AfrikaWater {
 	Water1("Lake Malawi"),

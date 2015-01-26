@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.wahlzeit.location;
+package org.violettatabirta.adap;
 
 import java.util.Hashtable;
 import java.util.Map;

@@ -23,10 +23,10 @@ package org.wahlzeit.handlers;
 import java.util.*;
 import java.io.*;
 
-import org.wahlzeit.location.AfrikaPhoto;
-import org.wahlzeit.location.AfrikaResidents;
-import org.wahlzeit.location.AfrikaVegetation;
-import org.wahlzeit.location.AfrikaWater;
+import org.violettatabirta.adap.AfrikaPhoto;
+import org.violettatabirta.adap.AfrikaResidents;
+import org.violettatabirta.adap.AfrikaVegetation;
+import org.violettatabirta.adap.AfrikaWater;
 import org.wahlzeit.model.*;
 import org.wahlzeit.services.*;
 import org.wahlzeit.utils.*;

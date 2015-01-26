@@ -1,4 +1,4 @@
-package org.wahlzeit.location;
+package org.violettatabirta.adap;
 
 public interface IVegetation {
 	void setVegetation(String vegetationZone);

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.wahlzeit.location;
+package org.violettatabirta.adap;
 
 /**
  * @author Violetta Tabirta
